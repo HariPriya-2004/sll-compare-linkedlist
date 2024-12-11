@@ -1,0 +1,75 @@
+import java.util.*;
+class Node {
+    int data;
+     Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class CompareLinkedLists {
+
+    
+    public static int compareLists(Node list1, Node list2) {
+       Node temp1 = list1;
+        Node temp2 = list2;
+
+       
+        while (temp1 != null && temp2 != null) {
+            if (temp1.data != temp2.data) {
+                return 0; 
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+
+       
+        if (temp1 == null && temp2 == null) {
+            return 1; 
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            
+            int n1 = sc.nextInt();
+            Node list1 = null, tail1 = null;
+            for (int i = 0; i < n1; i++) {
+                int data = sc.nextInt();
+                Node newNode = new Node(data);
+                if (list1 == null) {
+                    list1 = tail1 = newNode;
+                } else {
+                    tail1.next = newNode;
+                    tail1 = newNode;
+                }
+           }
+
+           
+            int n2 = sc.nextInt();
+            Node list2 = null, tail2 = null;
+            for (int i = 0; i < n2; i++) {
+                int data = sc.nextInt();
+              Node newNode = new Node(data);
+                if (list2 == null) {
+                    list2 = tail2 = newNode;
+                } else {
+                    tail2.next = newNode;
+                    tail2 = newNode;
+                }
+            }
+
+            
+            System.out.println(compareLists(list1, list2));
+        }
+        sc.close();
+    }
+}
